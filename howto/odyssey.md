@@ -56,8 +56,8 @@ Just a warning... both of the above environments do not play nicely with standar
 #### 1) HEWL S-SAD
 If you want to play around with data reduction in DIALS, XDS, or some other program, here is the location of a high-quality
 HEWL dataset. This room-temperature dataset was collected at 24-ID-C at a low X-ray energy (6553 eV), and you should be able to solve this
-structure by sulfur SAD. There are 1440˚ passes on the crystal, and I personally processed both passes independently in DIALS, and then
-merged the two passes in AIMLESS. You should also manually set the beam center to 290.5, 225.2, and it is helpful to set a maximum resolution for 
+structure by sulfur SAD. There are two 1440˚ passes on the crystal, and I personally processed both passes independently in DIALS, and then
+merged the two passes in AIMLESS. You should also manually set the beam center to `(290.5, 225.2), and it is helpful to set a maximum resolution for 
 strong spots/indexing to 25Å.
 
 `/n/holylfs/LABS/hekstra_lab/data/201907_APS_24IDC/images/301/0_0/`
