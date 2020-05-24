@@ -26,7 +26,7 @@ def _jax_row(Xi, X, y, bw):
 
 
 def jax_map(X, y, bw):
-    return map(lambda Xi: _jax_row(Xi, X, y, bw), X)
+    return np.array(map(lambda Xi: _jax_row(Xi, X, y, bw), X))
 
 
 # def jax_vmap(X, y, bw):
