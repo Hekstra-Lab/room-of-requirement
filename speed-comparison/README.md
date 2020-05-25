@@ -1,3 +1,26 @@
+# objective
+Given:
+```python
+n = 60000
+X = np.random.random(n).astype(np.float32)
+y = 100.*X + 100. + np.random.random(n).astype(np.float32)
+bw = (X.max() - X.min())/100
+```
+
+calculate:
+
+$\vec{y} \exp\left(-\frac{(\vec{X}-\vec{X}^T)^2}{2 \cdot bw}\right)$
+
+as fast as possible.
+For reference the calculation using numpy is:
+
+```python
+Kxx = np.exp(-0.5*(X([:,None] - X[None,:])/bw)**2.)
+y @ Kxx
+```
+but not everyone has infinite ram so you'll probably need to loop over something.
+
+John pointed out that the matrix is symmetric so there are some tricks that could be done with that. But for the sake of comparing different libraries lets keep implementations without that fact.
 # How to add function
 
 Define your function in `methods.py` that accepts `X, y, bw` and returns a numpy array. Add the function name to `__all__`. Then run `python compare.py` to see results
