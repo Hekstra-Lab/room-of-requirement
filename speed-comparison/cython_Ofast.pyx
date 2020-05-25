@@ -1,4 +1,5 @@
 #distutils: language = c++
+# cython: language_level=3 
 #distutils: extra_compile_args = -Wno-unused-function -Wno-unneeded-internal-declaration -Ofast
 import numpy as np
 cimport numpy as np
@@ -13,19 +14,14 @@ from cython.parallel import prange
 @cython.nonecheck(False)
 @cython.wraparound(False)
 @cython.cdivision(True)
+@cython.initializedcheck(False)
+@cython.overflowcheck(False)
 def cython_simple(X, y, bw):
 
     cdef Py_ssize_t n = X.shape[0]
 
-    # array_1.shape is now a C array, no it's not possible
-    # to compare it simply by using == without a for-loop.
-    # To be able to compare it to array_2.shape easily,
-    # we convert them both to Python tuples.
-
     result = np.zeros((n), dtype=DTYPE)
     cdef float[:] result_view = result
-#     cdef float[:] W = np.zeros(n,dtype=DTYPE)
-#     cdef float tmp
     cdef Py_ssize_t i 
 
     for i in range(n):
