@@ -1,12 +1,12 @@
 import numpy as np
 __all__ = [
-    'numpy_for_loop',
-    'jax_map',
-    # 'jax_vmap',
-    'cython_Ofast_simple',
-    'cython_Ofast_full',
-    'cython_O3_simple',
-    'cython_O3_full',
+#    'numpy_for_loop',
+#    'jax_map',
+#    # 'jax_vmap',
+#    'cython_Ofast_simple',
+#    'cython_Ofast_full',
+#    'cython_O3_simple',
+#    'cython_O3_full',
     'tf_map',
 ]
 
@@ -63,15 +63,15 @@ from os import environ
 environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 def tf_map(X, y, bw, parallel_iterations=1000):
-    bw =tf.convert_to_tensor(X, dtype=tf.float32)
+    bw =tf.convert_to_tensor(bw, dtype=tf.float32)
     X = tf.convert_to_tensor(X, dtype=tf.float32)
     y = tf.convert_to_tensor(y, dtype=tf.float32)
 
     @tf.function
     def _tf_map(X, y, bw):
         def _tf_row(Xi):
-            W = tf.math.exp(-0.5*((X - Xi)/bw)**2.)
-            W = W/tf.reduce_sum(W)
+            W = tf.math.exp(-0.5*tf.square((X - Xi)/bw))
+            W,_ = tf.linalg.normalize(W, 1)
             return tf.reduce_sum(y*W)
         return tf.map_fn(_tf_row, X, parallel_iterations=parallel_iterations)
 
