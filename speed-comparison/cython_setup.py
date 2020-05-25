@@ -1,8 +1,13 @@
 from setuptools import setup
 from Cython.Build import cythonize
+import numpy as np
+import os
+
+os.environ["CC"]= 'gcc-9'
+os.environ["CXX"]= 'g++-9'
 
 setup(
-    ext_modules = cythonize("*.pyx"),
+    ext_modules = cythonize("*.pyx"), include_dirs=[np.get_include()]
 )
 # setup(
 #     ext_modules = cythonize("cython_Ofast.pyx", extra_compile_args =["-O3"]),
