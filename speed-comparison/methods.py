@@ -7,6 +7,7 @@ __all__ = [
     'cython_Ofast_full',
     'cython_O3_simple',
     'cython_O3_full',
+    'tf_map',
 ]
 
 
@@ -54,3 +55,25 @@ def cython_O3_simple(X, y, bw):
 
 def cython_O3_full(X, y, bw):
     return cython_O3.cython_full(X, y, bw)
+
+import tensorflow as tf
+
+#Disable CUDA devices
+from os import environ
+environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+def tf_vmap(X, y, bw, parallel_iterations=1000):
+    bw = tf.stop_gradient(tf.convert_to_tensor(X, dtype=tf.float32))
+    X = tf.stop_gradient(tf.convert_to_tensor(X, dtype=tf.float32))
+    y = tf.stop_gradient(tf.convert_to_tensor(y, dtype=tf.float32))
+
+    @tf.function
+    def _tf_map(X, y, bw):
+        def _tf_row(Xi):
+            W = tf.math.exp(-0.5*((X - Xi)/bw)**2.)
+            W = W/tf.reduce_sum(W)
+            return tf.reduce_sum(y*W)
+        return tf.map_fn(_tf_row, X, parallel_iterations=parallel_iterations)
+
+    return _tf_map(X, y, bw)
+
