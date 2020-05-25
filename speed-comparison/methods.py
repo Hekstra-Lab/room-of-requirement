@@ -1,12 +1,12 @@
 import numpy as np
 __all__ = [
-#    'numpy_for_loop',
-#    'jax_map',
-#    # 'jax_vmap',
-#    'cython_Ofast_simple',
-#    'cython_Ofast_full',
-#    'cython_O3_simple',
-#    'cython_O3_full',
+    'numpy_for_loop',
+    'jax_map',
+    # 'jax_vmap',
+    'cython_Ofast_simple',
+    'cython_Ofast_full',
+    'cython_O3_simple',
+    'cython_O3_full',
     'tf_map',
 ]
 
