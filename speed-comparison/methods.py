@@ -3,6 +3,10 @@ __all__ = [
     'numpy_for_loop',
     'jax_map',
     # 'jax_vmap',
+    'cython_Ofast_simple',
+    'cython_Ofast_full',
+    'cython_O3_simple',
+    'cython_O3_full',
 ]
 
 
@@ -26,8 +30,27 @@ def _jax_row(Xi, X, y, bw):
 
 
 def jax_map(X, y, bw):
-    return np.array(map(lambda Xi: _jax_row(Xi, X, y, bw), X))
+    return np.asarray(map(lambda Xi: _jax_row(Xi, X, y, bw), X))
 
 
 # def jax_vmap(X, y, bw):
 #     return vmap(lambda X: _jax_row(X, y, bw), X)
+
+
+import cython_Ofast
+
+def cython_Ofast_simple(X, y, bw):
+    return cython_Ofast.cython_simple(X, y, bw)
+
+
+def cython_Ofast_full(X, y, bw):
+    return cython_Ofast.cython_full(X, y, bw)
+
+import cython_O3
+
+def cython_O3_simple(X, y, bw):
+    return cython_O3.cython_simple(X, y, bw)
+
+
+def cython_O3_full(X, y, bw):
+    return cython_O3.cython_full(X, y, bw)
