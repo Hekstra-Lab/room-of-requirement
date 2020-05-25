@@ -62,7 +62,7 @@ import tensorflow as tf
 from os import environ
 environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-def tf_vmap(X, y, bw, parallel_iterations=1000):
+def tf_map(X, y, bw, parallel_iterations=1000):
     bw = tf.stop_gradient(tf.convert_to_tensor(X, dtype=tf.float32))
     X = tf.stop_gradient(tf.convert_to_tensor(X, dtype=tf.float32))
     y = tf.stop_gradient(tf.convert_to_tensor(y, dtype=tf.float32))
