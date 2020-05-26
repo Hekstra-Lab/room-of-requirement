@@ -7,9 +7,6 @@ from libc.math cimport exp, pow
 cimport cython
 DTYPE = np.float32
 
-from cython.parallel import prange
-
-
 @cython.boundscheck(False)
 @cython.nonecheck(False)
 @cython.wraparound(False)
@@ -57,7 +54,7 @@ cpdef cython_full(float[::1] X, float[::1] y, float bw):
         for i in range(n):
             tmp = 0
             for j in range(n):
-                W[j] = exp(.5*pow(X[j] - X[i],2.))
+                W[j] = exp(-.5*pow((X[j] - X[i])/bw,2.))
                 tmp += W[j]
             for j in range(n):
                 result_view[i] += y[j]*W[j]/tmp

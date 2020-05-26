@@ -28,7 +28,7 @@ def time_fxn(f, X, y, bw, verbose=True, correct_answer=None):
 
 if __name__ == '__main__':
     import methods
-    data = gen_data(1000)
+    data = gen_data()
     times = {}
     times['numpy_for_loop'], correct_answer = time_fxn(methods.numpy_for_loop,*data)
     for f_name in methods.__all__[1:]:
