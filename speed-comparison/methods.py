@@ -1,6 +1,8 @@
 import numpy as np
 __all__ = [
     'numpy_for_loop',
+    'numpy_apply',
+    'numpy_vectorize',
     'jax_map',
     # 'jax_vmap',
     'cython_Ofast_simple',
@@ -17,8 +19,22 @@ def numpy_for_loop(X, y, bw):
     for i in range(X.shape[0]):
         W = np.exp(-0.5*((X - X[i])/bw)**2.)
         W = W/np.sum(W)
-        S[i] = np.sum(y*W)
+        S[i] = np.sum(y * W)
     return S
+
+def numpy_apply(X, y, bw):
+    def _S_row(Xi):
+        W = np.exp(-0.5*((X - Xi)/bw)**2.)
+        W = W/np.sum(W)
+        return np.sum(y*W)
+    return np.apply_along_axis(_S_row, 1, X[:,None])
+
+def numpy_vectorize(X, y, bw):
+    def _S_row(Xi):
+        W = np.exp(-0.5*((X - Xi)/bw)**2.)
+        W = W/np.sum(W)
+        return np.sum(y*W)
+    return np.vectorize(_S_row)(X)
 
 from jax import numpy as jnp
 from jax import jit, vmap
