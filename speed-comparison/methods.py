@@ -1,6 +1,7 @@
 import numpy as np
 __all__ = [
     'numpy_for_loop',
+    'numpy_for_loop_alt',
     'numpy_apply',
     'numpy_vectorize',
     'jax_map',
@@ -22,6 +23,13 @@ def numpy_for_loop(X, y, bw):
         S[i] = np.sum(y * W)
     return S
 
+def numpy_for_loop_alt(X, y, bw):
+    S = np.zeros_like(X)
+    for i in range(X.shape[0]):
+        W = np.exp(-0.5*((X - X[i])/bw)**2.)
+        S[i] = np.sum(y * W)/np.sum(W)
+    return S
+
 def numpy_apply(X, y, bw):
     def _S_row(Xi):
         W = np.exp(-0.5*((X - Xi)/bw)**2.)
@@ -40,11 +48,9 @@ from jax import numpy as jnp
 from jax import jit, vmap
 from jax.lax import map
 
-
 def _jax_row(Xi, X, y, bw):
     W = jnp.exp(-0.5*((X - Xi)/bw)**2.)
-    W = W/jnp.sum(W)
-    return jnp.sum(y*W)
+    return jnp.sum(y*W)/jnp.sum(W)
 
 
 def jax_map(X, y, bw):
@@ -88,8 +94,7 @@ def tf_map(X, y, bw, parallel_iterations=1000):
     def _tf_map(X, y, bw):
         def _tf_row(Xi):
             W = tf.math.exp(-0.5*tf.square((X - Xi)/bw))
-            W,_ = tf.linalg.normalize(W, 1)
-            return tf.reduce_sum(y*W)
+            return tf.reduce_sum(y*W)/tf.reduce_sum(W)
         return tf.map_fn(_tf_row, X, parallel_iterations=parallel_iterations)
 
     return _tf_map(X, y, bw)
@@ -100,8 +105,7 @@ from joblib import parallel_backend
 
 def _numpy_single_iter(i, X, y, bw):
     W = np.exp(-0.5*((X - X[i])/bw)**2.)
-    W = W/np.sum(W)
-    return np.sum(y*W)
+    return np.sum(y*W)/np.sum(W)
 
 def joblib_parallel(X, y, bw, n_jobs=4):
     with parallel_backend('threading', n_jobs=n_jobs):
