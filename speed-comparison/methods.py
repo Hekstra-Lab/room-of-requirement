@@ -8,6 +8,7 @@ __all__ = [
     'cython_O3_simple',
     'cython_O3_full',
     'tf_map',
+    'joblib_parallel'
 ]
 
 
@@ -77,3 +78,15 @@ def tf_map(X, y, bw, parallel_iterations=1000):
 
     return _tf_map(X, y, bw)
 
+
+from joblib import Parallel, delayed
+from joblib import parallel_backend
+
+def _numpy_single_iter(i, X, y, bw):
+    W = np.exp(-0.5*((X - X[i])/bw)**2.)
+    W = W/np.sum(W)
+    return np.sum(y*W)
+
+def joblib_parallel(X, y, bw, n_jobs=4):
+    with parallel_backend('threading', n_jobs=n_jobs):
+        return np.asarray(Parallel()(delayed(_numpy_single_iter)(i, X, y, bw) for i in range(X.shape[0])))
