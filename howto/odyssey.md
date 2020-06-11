@@ -2,7 +2,7 @@
 
 Here are some general guidelines and best practices for working on the cluster.
 
-Contents:
+### Contents:
 - [Logging In](odyssey.md#Logging-in)
 - [Personal Python Environments](odyssey.md#Personal-Python-Environments)
 - [Hekstra Lab Storage](odyssey.md#Hekstra-Lab-Storage)
@@ -11,6 +11,7 @@ Contents:
 - [Launching Jobs](odyssey.md#Launching-Jobs)
 - [Practice Datasets](odyssey.md#Practice-Datasets)
 
+----
 ### Logging In
 
 You can `ssh` into the cluster with the following command:
@@ -22,6 +23,7 @@ This will give you a login node that can be used to access different filesystems
 and launch jobs. In general, it is best practices to not use a login node for any real computationally-intensive task and to
 reserve any real work for compute nodes. 
 
+----
 ### Personal Python Environments
 
 The Harvard cluster does have an installation of anaconda that is available as a `module` that can be loaded (see [Python](https://docs.rc.fas.harvard.edu/kb/python/) for more details). Personally, I prefer to maintain my own miniconda directory within my home directory. The latest version of `miniconda3` can be installed using the following:
@@ -35,6 +37,7 @@ source ./Miniconda3-latest-Linux-x86_64.sh
 
 You can then use `conda` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
 
+----
 ### Hekstra Lab Storage
 
 For persistent storage of lab data or personal work, the Hekstra lab has an 8TB allocation on the cluster's Isilon filesystem. This can be accessed at:
@@ -47,6 +50,7 @@ This filesystem should be used for persistent storage because it is backed up to
 
 Diffraction images from past data collection trips are all stored in `/n/hekstra_lab/data`. For personal work, you should create a personal subdirectory in `/n/hekstra_lab/people`. For works that have reached some semblance of completion, a subdirectory can be made in `/n/hekstra_lab/projects`.
 
+----
 ### Common Software
 
 I have also been maintaining a directory with useful applications for crystallographic data processing in the lab's `garden`. 
@@ -65,6 +69,7 @@ source /n/hekstra_lab/garden/precognition/Precognition_5.2_distrib/setup_precogn
 ```
 > :warning: Both of the above environments do not play nicely with standard Python distributions.
 
+----
 ### Best Practices
 
 Although `/n/hekstra_lab` should be used for persistent storage, it is not best to use this filesystem as a working directory for any jobs requiring heavy IO. This is because there is relatively high latency between this filesystem and the compute nodes on the cluster.
@@ -76,12 +81,14 @@ As such, you should make a personal subdirectory within the following for tempor
 
 > :warning: Files in `$SCRATCH` directories will be deleted if they have not been edited in 3 months. As such, be sure to remember to copy any useful files or results back to the lab's persistent storage when you are done with your work. 
 
+----
 ### Launching Jobs
 
 Odyssey (or Cannon, whatever it's called these days) uses Slurm as a job scheduler. Here is a general page describing how to
 submit jobs on Odyssey: [Running jobs](https://docs.rc.fas.harvard.edu/kb/running-jobs/). Importantly, it also has a list of 
 all the partitions available, and their general resources/constraints.
 
+----
 ### Practice Datasets
 
 If you are interested in getting started processing crystallographic data on the cluster, here are two datasets that can be useful examples:
