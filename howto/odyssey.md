@@ -26,13 +26,13 @@ You can then use `conda` as a Python package manager. It may be advisable to run
 
 ### Hekstra Lab Storage
 
-For persistent storage of lab data or personal work, the Hekstra has an 8TB allocation on the cluster's Isilon filesystem. This can be accessed at:
+For persistent storage of lab data or personal work, the Hekstra lab has an 8TB allocation on the cluster's Isilon filesystem. This can be accessed at:
 - `/net/rcstorenfs02/ifs/rc_labs/hekstra_lab`
 
 For convenience, it is also aliased as:
 - `/n/hekstra_lab`
 
-This filesystem should be used for persistent storage because it is backed up to an external site on a monthly basis, and maintains daily snapshots of the directories in case anyone needs to recover any deleted files. 
+This filesystem should be used for persistent storage because it is backed up to an external site on a monthly basis, and it maintains daily snapshots of the directories in case anyone needs to recover any deleted files. 
 
 Diffraction images from past data collection trips are all stored in `/n/hekstra_lab/data`. For personal work, you should create a personal subdirectory in `/n/hekstra_lab/people`. For works that have reached some semblance of completion, a subdirectory can be made in `/n/hekstra_lab/projects`.
 
