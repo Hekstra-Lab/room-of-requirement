@@ -6,7 +6,7 @@ You need to install the openconnect network manager to interface with the cisco 
 (I'm not actually sure if you need both as I installed both at once)
 
 Go to Settings > Network and click add vpn, then select the openconnect option
-![](setup1.png) 
+![](images/setup1.png) 
 
 
 Name the vpn whatever you want, add the gateway. The two most relevant ones are:
@@ -14,11 +14,11 @@ FAS VPN : vpn.harvard.edu
 RC VPN : vpn.rc.fas.harvard.edu
  e.g. for the RC vpn:
 
- ![](setup2.png) 
+ ![](images/setup2.png) 
  
  
  then you can access the vpn through the toolbar at the top right of the screen:
- ![](running1.png) 
+ ![](images/running1.png) 
  
  For the RC vpn the username will be username@odyssey (e.g. ianhi@odyssey)
  and for the FAS vpn it will be the email you use for your HarvardKey login (e.g. ianhuntisaak@g.harvard.edu)
