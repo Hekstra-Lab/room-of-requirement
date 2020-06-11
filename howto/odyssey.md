@@ -1,5 +1,16 @@
 # Working on the Harvard Cluster
 
+Here are some general guidelines and best practices for working on the cluster.
+
+Contents:
+- [Logging In](odyssey.md#Logging-in)
+- [Personal Python Environments](odyssey.md#Personal-Python-Environments)
+- [Hekstra Lab Storage](odyssey.md#Hekstra-Lab-Storage)
+- [Common Software](odyssey.md#Common-Software)
+- [Best Practices](odyssey.md#Best-Practices)
+- [Launching Jobs](odyssey.md#Launching-Jobs)
+- [Practice Datasets](odyssey.md#Practice-Datasets)
+
 ### Logging In
 
 You can `ssh` into the cluster with the following command:
@@ -72,6 +83,8 @@ submit jobs on Odyssey: [Running jobs](https://docs.rc.fas.harvard.edu/kb/runnin
 all the partitions available, and their general resources/constraints.
 
 ### Practice Datasets
+
+If you are interested in getting started processing crystallographic data on the cluster, here are two datasets that can be useful example.
 
 #### 1) HEWL S-SAD
 If you want to play around with data reduction in DIALS, XDS, or some other program, here is the location of a high-quality
