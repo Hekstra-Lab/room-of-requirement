@@ -84,7 +84,7 @@ all the partitions available, and their general resources/constraints.
 
 ### Practice Datasets
 
-If you are interested in getting started processing crystallographic data on the cluster, here are two datasets that can be useful example.
+If you are interested in getting started processing crystallographic data on the cluster, here are two datasets that can be useful examples:
 
 #### 1) HEWL S-SAD
 If you want to play around with data reduction in DIALS, XDS, or some other program, here is the location of a high-quality
