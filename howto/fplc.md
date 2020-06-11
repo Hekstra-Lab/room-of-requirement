@@ -2,9 +2,10 @@
 
 This page is intended to be the lab's collective memory of how we dealt with past FPLC issues. If you encounter and solve an issue that you think will be useful to others, please document it on this page.
 
-Contents:
+### Contents:
 - [UNICORN software cannot connect to AKTA](fplc.md#UNICORN-Software-Cannot-Connect-to-AKTA)
 
+----
 ### UNICORN Software Cannot Connect to AKTA
 
 After long periods without use or after Windows software updates, it is pretty common for the UNICORN software to have trouble connecting to the AKTA Pure 25. This sometimes manifests as a "grayed-out" pop-up in the main Manual Control window when trying to connect to the instrument:
