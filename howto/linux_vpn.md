@@ -27,7 +27,7 @@ Then there are two passowrd fields. The first is the normal password and the sec
 
 
 ### Making it nice with lastpass
-If you install the lastpass command line client then you can avoid typing (or even remembering!) your passwords, and for the RC vpn you can even opening duo.
+If you install the lastpass command line client then you can avoid typing (or even remembering!) your passwords, and for the RC vpn you can even avoid opening duo.
 
 This assumes that you have the following passwords saved in your lastpass:
 RC account password saved as: rc.harvard.edu
