@@ -31,11 +31,10 @@ The Harvard cluster does have an installation of anaconda that is available as a
 ```bash
 cd ~
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod u+x Miniconda3-latest-Linux-x86_64.sh
-source ./Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-You can then use `conda` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
+Follow the prompts, and then you should close and re-open your shell for the changes to take effect. You can then use `conda` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
 
 ----
 ### Hekstra Lab Storage
