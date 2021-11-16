@@ -39,7 +39,7 @@ Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
    
 ![Main Globus Page](images/4_globus.png)
 
-6. Authenticate endpoint using your research computing credentials. The verification code is your standard 6-digit 2FA code. 
+6. Authenticate endpoint using your research computing credentials. The verification code is your standard 2FA code. 
 
 ![Authenticate](images/5_globus.png)
 
