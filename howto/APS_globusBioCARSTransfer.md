@@ -30,26 +30,26 @@ Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
 
 3. Log in to Globus using your standard HarvardKey
 
-![Log in using HarvardKey](howto/images/2_globus.png)
+![Log in using HarvardKey](images/2_globus.png)
 
 4. Log on to Harvard RC VPN
 
 5. Add `Harvard FAS RC Holyoke` Globus Endpoint. There is also a Boston endpoint, but the Holyoke one is necessary to transfer to `holyscratch`.
    You also need to be on the Harvard RC VPN for this to work.
    
-![Main Globus Page](howto/images/4_globus.png)
+![Main Globus Page](images/4_globus.png)
 
 6. Authenticate endpoint using your research computing credentials. The verification code is your standard 6-digit 2FA code. 
 
-![Authenticate](howto/images/5_globus.png)
+![Authenticate](images/5_globus.png)
 
 7. Select what you want to transfer and where it should go. Oftentimes, on the BioCARS side, you just want to select all. I only subselect if we are sharing
    a beamtime with Rama's lab, and I don't want to transfer their data as well as ours. On our side, I usually make a new folder in 
    `/n/holyscratch01/hekstra_lab/Lab` or `/n/holyscratch01/hekstra_lab/Users/username`:
 
-![Set up transfer](howto/images/7_globus.png)
+![Set up transfer](images/7_globus.png)
 
 8. Press the start arrow that goes from BioCARS to Harvard. You should then get an entry on your "Activity" page for the transfer. 
    You will get an email when the files have transferred.
 
-![Activity](howto/images/8_globus.png)
+![Activity](images/8_globus.png)
