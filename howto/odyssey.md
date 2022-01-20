@@ -21,7 +21,8 @@ ssh username@login.rc.fas.harvard.edu
 ```
 This will give you a login node that can be used to access different filesystems, move data around, write programs/scripts, 
 and launch jobs. In general, it is best practices to not use a login node for any real computationally-intensive task and to
-reserve any real work for compute nodes. 
+reserve any real work for compute nodes. If you are frequently accessing data stored in boston, it can be advantage to ssh to
+`boslogin.rc.fas.harvard.edu`, or if you are frequently accessing things in holyoke you should use `holylogin.rc.fas.harvard.edu`.
 
 ----
 ### Personal Python Environments
