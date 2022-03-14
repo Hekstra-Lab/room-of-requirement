@@ -41,7 +41,7 @@ Follow the prompts, and then you should close and re-open your shell for the cha
 ### Hekstra Lab Storage
 
 For persistent storage of lab data or personal work, the Hekstra lab has an 8TB allocation on the cluster's Isilon filesystem. This can be accessed at:
-- `/net/rcstorenfs02/ifs/rc_labs/hekstra_lab`
+- `/net/holy-nfsisilon/ifs/rc_labs/hekstra_lab`
 
 For convenience, it is also aliased as:
 - `/n/hekstra_lab`
@@ -55,17 +55,17 @@ Diffraction images from past data collection trips are all stored in `/n/hekstra
 
 I have also been maintaining a directory with useful applications for crystallographic data processing in the lab's `garden`. 
 This directory can be found here:
-- `/n/hekstra_lab/garden`
+- `/n/holylfs05/LABS/hekstra_lab/Lab/garden`
 
 I maintain relatively up-to-date versions of DIALS, XDS, phenix, and precognition in there. In order to set up your environment for running `dials` or `precognition`, use one of the following bash scripts:
 
 ```bash
 # Setup DIALS environment
-source /n/hekstra_lab/garden/dials/build/setpaths.sh
+source /n/holylfs05/LABS/hekstra_lab/Lab/garden/dials/build/setpaths.sh
 ```
 ```bash
 # Setup Precognition environment
-source /n/hekstra_lab/garden/precognition/Precognition_5.2_distrib/setup_precognition_env.sh
+source /n/holylfs05/LABS/hekstra_lab/Lab/garden/precognition/Precognition_5.2_distrib/setup_precognition_env.sh
 ```
 > :warning: Both of the above environments do not play nicely with standard Python distributions.
 
