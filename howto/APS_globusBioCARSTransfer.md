@@ -49,6 +49,8 @@ Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
 
 ![Set up transfer](images/7_globus.png)
 
+:warning: Globus is very sensitive to how the directory is specified on the Harvard cluster side -- make sure the destination directory is "checked," rather than clicking into the desired directory. Otherwise, you may run into permissions issues.
+
 8. Press the start arrow that goes from BioCARS to Harvard. You should then get an entry on your "Activity" page for the transfer. 
    You will get an email when the files have transferred.
 
