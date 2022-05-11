@@ -1,14 +1,14 @@
 ### How to set your own singularity containers on RC cluster
 
-These are instructions to get singularity containers with your personalized environment on the RC cluster. We are tyring to wrap all conda binaries within a singularity container in the `tier0` storage, for two reasons:
+These are instructions to get singularity containers with your personalized environment on the RC cluster. We are trying to wrap all conda binaries within a singularity container in the `tier0` storage, for two reasons:
 
 1. Compared with your home directory, `tier0` stroage has much lower latency to call when you are working on a computing node. About **5s to 0.7s**, including the container latency. 
 
 2. `tier0` has a strict inodes limit at about 1M. As a reference, I have about 300k small files in my `miniconda3` folder. So it is not pratical for everyone in lab to directly move all their binaries into `tier0`
 
-I have created an singularity image with `reciprocalspaceship` and `jupyter` at `/n/holylfs05/LABS/hekstra_lab/Lab/garden/singularity_images/rs_jupyter.sif`. I will show the steps to create sif file as an example below.
+I have created a singularity image with `reciprocalspaceship` and `jupyter` at `/n/holylfs05/LABS/hekstra_lab/Lab/garden/singularity_images/rs_jupyter.sif`. I will show the steps to create sif file as an example below.
 
-There are plenty of ways to build a singularity image, like building remotely with a definition file or with [docker2singularity](https://github.com/singularityhub/docker2singularity). What i am using here might not be the least painful approach, but I just feel it important that you can test the environment intereactively when you build it. 
+There are plenty of ways to build a singularity image, like building remotely with a definition file or with [docker2singularity](https://github.com/singularityhub/docker2singularity). What i am using here might not be the least painful approach, but I feel it important that you can test the environment intereactively when you build it. 
 
 If you only want to use the existing singularity image, go to the section 4.
 
