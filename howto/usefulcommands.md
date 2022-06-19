@@ -21,7 +21,7 @@ chmod g+rwx projects
 setfacl -d -m g::rwx projects
 ```
 
-### `rsync`
+## `rsync`
 
 The `rsync` command is a useful way to transfer files. `rsync` makes one folder match another folder, with the syntax 
 
@@ -29,7 +29,7 @@ The `rsync` command is a useful way to transfer files. `rsync` makes one folder 
 rsync [source] [destination]
 ```
 
-#### `rsync` with remote servers
+### `rsync` with remote servers
 
 When using `rsync` to grab data off a remote server, the syntax is as follows:
 
@@ -39,7 +39,7 @@ rsync username@remote.login.place:/path/to/remote/data /path/to/local/data
 
 Note the colon after the domain name, and the leading slash on the remote path.
 
-#### Useful `rsync` things to know
+### Useful `rsync` things to know
 
 As with all `bash` commands, it's often useful to take a peek at the manual (`man rsync`) or the help message (`rsync --help`). Here are some options and tricks you're likely to use (some of which appear in the command below)
 
@@ -49,7 +49,7 @@ As with all `bash` commands, it's often useful to take a peek at the manual (`ma
  - `--partial`: If the job is interrupted in the middle of transferring a file, continue with that file upon resuming
  - `--log-file="filename"`: print the `rsync` log to this file. I believe this file must already exist.
 
-#### `tmux` for background transfers
+### `tmux` for background transfers
 
 I think that `tmux` is installed by default on the cluster, though I honestly don't remember. If not, or if you're doing this on your personal computer, see installation instructions [here](https://github.com/tmux/tmux/wiki/Installing). All you should need to know about `tmux` to pull off the below is:
 
