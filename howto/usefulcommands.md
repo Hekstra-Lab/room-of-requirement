@@ -49,6 +49,9 @@ As with all `bash` commands, it's often useful to take a peek at the manual (`ma
  - `--partial`: If the job is interrupted in the middle of transferring a file, continue with that file upon resuming
  - `--log-file="filename"`: print the `rsync` log to this file. I believe this file must already exist.
 
+#### `rsync` dry runs
+If you throw the `-n` flag onto an `rsync` command, it doesn't actually do anything, but rather tells you what it *would* do. Note that this is only really useful in combination with verbose mode!
+
 ### `tmux` for background transfers
 
 I think that `tmux` is installed by default on the cluster, though I honestly don't remember. If not, or if you're doing this on your personal computer, see installation instructions [here](https://github.com/tmux/tmux/wiki/Installing). All you should need to know about `tmux` to pull off the below is:
