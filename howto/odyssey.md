@@ -27,15 +27,15 @@ reserve any real work for compute nodes. If you are frequently accessing data st
 ----
 ### Personal Python Environments
 
-The Harvard cluster does have an installation of anaconda that is available as a `module` that can be loaded (see [Python](https://docs.rc.fas.harvard.edu/kb/python/) for more details). Personally, I prefer to maintain my own miniconda directory within my home directory. The latest version of `miniconda3` can be installed using the following:
+The Harvard cluster does have an installation of anaconda that is available as a `module` that can be loaded (see [Python](https://docs.rc.fas.harvard.edu/kb/python/) for more details). Personally, I recommend to maintain your own conda/mamba directory in the lab isilon storage. Check this [link](https://github.com/Hekstra-Lab/room-of-requirement/blob/master/howto/move_conda.md) to see why that is the best directory. To install the latest [mamba](https://github.com/mamba-org/mamba) in your lab isilon folder, do
 
 ```bash
-cd ~
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
+cd /net/holy-nfsisilon/ifs/rc_labs/hekstra_lab/people/<username>/
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+bash Mambaforge-Linux-x86_64.sh
 ```
 
-Follow the prompts, and then you should close and re-open your shell for the changes to take effect. You can then use `conda` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
+Follow the prompts, and then you should close and re-open your shell for the changes to take effect. You can then use `conda` or `mamba` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
 
 ----
 ### Hekstra Lab Storage
