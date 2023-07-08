@@ -21,21 +21,60 @@ ssh username@login.rc.fas.harvard.edu
 ```
 This will give you a login node that can be used to access different filesystems, move data around, write programs/scripts, 
 and launch jobs. In general, it is best practices to not use a login node for any real computationally-intensive task and to
-reserve any real work for compute nodes. If you are frequently accessing data stored in boston, it can be advantage to ssh to
+reserve any real work for compute nodes. 
+
+If you are frequently accessing data stored in boston, it can be advantage to ssh to
 `boslogin.rc.fas.harvard.edu`, or if you are frequently accessing things in holyoke you should use `holylogin.rc.fas.harvard.edu`.
 
 ----
 ### Personal Python Environments
 
-The Harvard cluster does have an installation of anaconda that is available as a `module` that can be loaded (see [Python](https://docs.rc.fas.harvard.edu/kb/python/) for more details). Personally, I recommend to maintain your own conda/mamba directory in the lab isilon storage. Check this [link](https://github.com/Hekstra-Lab/room-of-requirement/blob/master/howto/move_conda.md) to see why that is the best directory. To install the latest [mamba](https://github.com/mamba-org/mamba) in your lab isilon folder, do
+RC changed its Python importing logic in the Rocky upgrades. Now Mamba can be loaded as a module, so you don't have to populate your `.bashrc` with the conda init block. According to the [FASRC documentation](https://github.com/fasrc/User_Codes/blob/master/Languages/Python/Mamba.md), here is a step by step guide about how to set a mamba environment:
 
-```bash
-cd /net/holy-nfsisilon/ifs/rc_labs/hekstra_lab/people/<username>/
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
-bash Mambaforge-Linux-x86_64.sh
-```
+1. Connect to the RC VPN and log in to the RC cluster via SSH:
 
-Follow the prompts, and then you should close and re-open your shell for the changes to take effect. You can then use `conda` or `mamba` as a Python package manager. It may be advisable to run `conda init bash` in order to initialize `conda` as part of your `.bashrc`.
+   ```shell
+   ssh user_name@login.rc.fas.harvard.edu
+   ```
+
+2. In your ssh session, Load the Python module, which will automatically load the Mamba module:
+   
+   ```shell
+   module load python/3.10.9-fasrc01
+   ```
+   Confirm that the modules are loaded by running module list:
+   ```shell
+   Currently Loaded Modules:
+   1) Mambaforge/22.11.1-fasrc01   2) python/3.10.9-fasrc01
+   ```
+
+3. Configure your `.condarc` file to install environments in the lab tier 1 storage for better performance:
+   
+   ```shell
+   mkdir /n/hekstra_lab/people/<user_name>/envs
+   ```
+   Add the following block to your `~/.condarc` file. Create the file if it doesn't exist:
+   ```shell
+   envs_dirs:
+      - /n/hekstra_lab/people/<user_name>/envs
+   ```
+
+4. Create a Mamba environment with a custom name:
+
+   ```shell
+   mamba create -n <env_name> python=3.10
+   ```
+   *Note:* For GPU-accelerated deep learning frameworks, refer to the documentation on setting up compatible environments:
+   [pytorch](https://github.com/fasrc/User_Codes/tree/master/AI/PyTorch), [tensorflow](https://github.com/fasrc/User_Codes/tree/master/AI/TensorFlow)
+
+5. Activate the newly created environment, install packages you need:
+
+   ```shell
+   mamba activate <env_name>
+   pip/mamba/conda install <other_packages_you_need>
+   ```
+   
+Everytime you want to use the mamba environment, first load the `python/3.10.9-fasrc01` module, then activate your envrionment. 
 
 ----
 ### Hekstra Lab Storage
