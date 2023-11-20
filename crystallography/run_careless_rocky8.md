@@ -5,7 +5,10 @@ Up to the heading: **Pull a TF singularity container**. This link is the FASRC c
 
 In the `mamba create` command in the instructions, I install careless as well: 
 
-`mamba create -n tf2.12_cuda11 python=3.10 pip numpy six wheel scipy pandas matplotlib seaborn h5py jupyter jupyterlab careless`
+```
+mamba create -n tf2.12_cuda11 python=3.10 pip numpy six wheel scipy pandas matplotlib seaborn h5py jupyter jupyterlab
+pip install careless
+```
 
 
 Sometimes, `cuda-nvcc` must be installed: 
