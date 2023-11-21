@@ -7,7 +7,7 @@ When these instructions tell you to install `tensorflow`, add `careless` to the 
 ```bash
 (tf2.12_cuda11) $ pip install --upgrade tensorflow==2.12.* careless tensorflow-probability==0.20.0
 ```
-This ordering is important; `careless` installation brings `tensorflow` along with it, so doing it this way ensures minimal divergence from the instructions. Additionally, the instructions are tailored to `tensorflow 2.12`, but if you install `careless` without specification, you'll get the latest `tensorflow` (`2.15` or something). `careless` only calls for `>=2.8`, so `2.12` is totally fine!
+This ordering is important; `careless` installation brings `tensorflow` along with it, so doing it this way ensures minimal divergence from the instructions. Additionally, the instructions are tailored to `tensorflow 2.12`, but if you install `careless` without specification, you'll get the latest `tensorflow` (`2.15` or something). `careless` only calls for `>=2.8`, so `2.12` is totally fine! Additionally, `tensorflow 2.12` is not compatible with `tensorflow-probabililty 0.23.0` but installing `careless` currently installs `tensorflow-probability 0.23.0` with it. Thus, we also install `tensorflow-probabililty 0.20.0` which is compatible with `tensorflow 2.12`. 
 
 Sometimes, `cuda-nvcc` must be installed: 
 ```bash
