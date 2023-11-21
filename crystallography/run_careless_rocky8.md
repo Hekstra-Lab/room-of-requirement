@@ -5,7 +5,7 @@ Up to the heading: **Pull a TF singularity container**. This link is the FASRC c
 
 When these instructions tell you to install `tensorflow`, add `careless` to the command:
 ```bash
-(tf2.12_cuda11) $ pip install --upgrade tensorflow==2.12.* careless
+(tf2.12_cuda11) $ pip install --upgrade tensorflow==2.12.* careless tensorflow-probability==0.20.0
 ```
 This ordering is important; `careless` installation brings `tensorflow` along with it, so doing it this way ensures minimal divergence from the instructions. Additionally, the instructions are tailored to `tensorflow 2.12`, but if you install `careless` without specification, you'll get the latest `tensorflow` (`2.15` or something). `careless` only calls for `>=2.8`, so `2.12` is totally fine!
 
