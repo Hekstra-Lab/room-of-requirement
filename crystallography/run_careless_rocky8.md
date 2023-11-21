@@ -3,26 +3,24 @@ Careless requires `tensorflow` to run.
 Due to the new cluster and also compatibility woes for `tensorflow`, I followed fixes [here](https://github.com/fasrc/User_Codes/blob/master/AI/TensorFlow/README.md)
 Up to the heading: **Pull a TF singularity container**. This link is the FASRC cluster's guide to installing tensorflow on the Rocky 8 OS. 
 
-In the `mamba create` command in the instructions, I install careless as well: 
-
+When these instructions tell you to install `tensorflow`, add `careless` to the command:
+```bash
+(tf2.12_cuda11) $ pip install --upgrade tensorflow==2.12.* careless tensorflow-probability==0.20.0
 ```
-mamba create -n tf2.12_cuda11 python=3.10 pip numpy six wheel scipy pandas matplotlib seaborn h5py jupyter jupyterlab
-pip install careless
-```
-
+This ordering is important; `careless` installation brings `tensorflow` along with it, so doing it this way ensures minimal divergence from the instructions. Additionally, the instructions are tailored to `tensorflow 2.12`, but if you install `careless` without specification, you'll get the latest `tensorflow` (`2.15` or something). `careless` only calls for `>=2.8`, so `2.12` is totally fine! Additionally, `tensorflow 2.12` is not compatible with `tensorflow-probabililty 0.23.0` but installing `careless` currently installs `tensorflow-probability 0.23.0` with it. Thus, we also install `tensorflow-probabililty 0.20.0` which is compatible with `tensorflow 2.12`. 
 
 Sometimes, `cuda-nvcc` must be installed: 
-```
+```bash
 conda install -c nvidia cuda-nvcc
 ```
 To check that tensorflow can connect to the GPU, after activating your mamba environment with tensorflow in it: 
 
 First open an iPython session. 
-```
+```bash
 $ ipython
 ```
 Then run:
-```
+```python
 import tensorflow as tf
 tf.config.list_physical_devices('GPU')
 ```
