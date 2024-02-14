@@ -36,6 +36,7 @@ This code block includes `cog`,`regroup`,`marccd`,`rs-booster`, and `reciprocals
 mkdir packages
 cd packages
 conda create -n laue
+conda activate laue
 conda install -c conda-forge pip
 
 git clone https://github.com/Hekstra-Lab/cog.git
