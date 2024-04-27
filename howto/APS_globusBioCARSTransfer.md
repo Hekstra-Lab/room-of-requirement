@@ -2,10 +2,10 @@
 
 This is how I have been transferring data from BioCARS to our persistent lab storage using Globus. To my knowledge, Globus is the fastest way 
 to transfer data to/from the cluster. This is because the "endpoints" that are set up seem to have a rather high-speed internet connection. 
-Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
+Our transfer speeds are typically ~200 MB/s. 
 
-1. Transfer from BioCARS to `/n/holyscratch01/hekstra_lab/Lab` using Globus
-2. Move/copy data from SCRATCH to persistent storage
+> **_Update on Apr 25, 2024 by MH:_**
+> - We have asked RC to set an endpoint of tier 1 storage on the Globus. In the same `FAS RC Holyoke Globus` collection, path is `/n/hekstra_lab/Lab/`. So now it is possible to directly transfer from beamline to our persistent storage. Note the globus can only see files in `Lab` or `Users/$User`. 
 
 > **_Notes for posterity:_**
 > - Is it possible to transfer directly to our persistent lab storage? It does not seem to be accessible within the standard Harvard Globus endpoints.
@@ -34,7 +34,7 @@ Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
 
 4. Log on to Harvard RC VPN
 
-5. Add `Harvard FAS RC Holyoke` Globus Endpoint. There is also a Boston endpoint, but the Holyoke one is necessary to transfer to `holyscratch`.
+5. Add `Harvard FAS RC Holyoke` Globus Endpoint. There is also a Boston endpoint, but the Holyoke one is necessary to transfer to `holyscratch` and `holyisilon`.
    You also need to be on the Harvard RC VPN for this to work.
    
 ![Main Globus Page](images/4_globus.png)
@@ -44,14 +44,20 @@ Our transfer speeds are typically ~200 MB/s. There are two steps to the process:
 ![Authenticate](images/5_globus.png)
 
 7. Select what you want to transfer and where it should go. Oftentimes, on the BioCARS side, you just want to select all. I only subselect if we are sharing
-   a beamtime with Rama's lab, and I don't want to transfer their data as well as ours. On our side, I usually make a new folder in 
-   `/n/holyscratch01/hekstra_lab/Lab` or `/n/holyscratch01/hekstra_lab/Users/username`:
+   a beamtime with Rama's lab, and I don't want to transfer their data as well as ours. On our side, 
+   - If you want to move data to **scratch** storage, I usually make a new folder in  `/n/holyscratch01/hekstra_lab/Lab` or `/n/holyscratch01/hekstra_lab/Users/username`
 
-![Set up transfer](images/7_globus.png)
+   ![Set up transfer](images/7_globus.png)
+
+   - If you want to move data to **persistent** storage, you can make a new folder in `/n/hekstra_lab/Lab/move_from_beamline/`:
+   
+   ![Set up transfer 2](images/7b_globus.png)
 
 :warning: Globus is very sensitive to how the directory is specified on the Harvard cluster side -- make sure the destination directory is "checked," rather than clicking into the desired directory. Otherwise, you may run into permissions issues.
 
-8. Press the start arrow that goes from BioCARS to Harvard. You should then get an entry on your "Activity" page for the transfer. 
+:warning: Our persistent storage usually is short on storage space, check the quota by `df -h /n/hekstra_lab/` before initiate this transfer.
+
+1. Press the start arrow that goes from BioCARS to Harvard. You should then get an entry on your "Activity" page for the transfer. 
    You will get an email when the files have transferred.
 
 ![Activity](images/8_globus.png)
