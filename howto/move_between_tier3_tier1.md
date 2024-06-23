@@ -31,7 +31,7 @@ https://docs.rc.fas.harvard.edu/kb/tape-globus-access/
 
 2. Log on to Harvard RC VPN
 
-3. Log in to [Globus](globus.org) using your standard HarvardKey
+3. Log in to [Globus](www.globus.org) using your standard HarvardKey
 
 ![Log in using HarvardKey](images/2_globus.png)
 
