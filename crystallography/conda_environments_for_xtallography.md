@@ -1,55 +1,93 @@
-# Conda environments on the cluster for crystallographic data analysis
+# Mamba environments on the cluster for crystallographic data analysis
 
-This note is for setting up conda environments on the cluster for crystallographic data analysis. 
-The first part is intended to supersede [past instructions](https://github.com/Hekstra-Lab/room-of-requirement/blob/master/crystallography/run_careless_rocky8.md) 
-for careless installation on the cluster. 
+This note describes how to set up a Mamba environment for crystallographic data analysis on the cluster. Previous instructions used Conda; we now use Mamba, which is faster and is provided by FASRC through the Python module.
 
-How to set up conda environments on the cluster from scratch for Laue data processing:
+## Setup
 
+Load the FASRC Python module to make Mamba available:
 
-go to `/n/hekstra_lab/people/<your directory>`
-
-run the following code to set up `careless` with `tensorflow` configured correctly:
-
+```bash
+module load python
 ```
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh -b -p `readlink -f .`/anaconda
-source anaconda/etc/profile.d/conda.sh
-conda init
-conda create -yn careless python=3.10
-conda activate careless
+
+To make Mamba available automatically in future sessions, add the Python module to your `~/.bashrc`:
+
+```bash
+echo 'module load python' >> ~/.bashrc
+```
+
+This only needs to be done once. In future login sessions, the Python module will be loaded automatically.
+
+Create `xtalenv1` with Python 3.12, NumPy 1.26, and CCTBX, then activate the environment:
+
+```bash
+mamba create -n xtalenv1 python=3.12 numpy=1.26 cctbx -c conda-forge
+mamba activate xtalenv1
+```
+
+NumPy is constrained to version 1.26 because `marccd 0.3` requires NumPy `<2.0`. Installing CCTBX together with the NumPy constraint allows Mamba to resolve compatible versions of the scientific Python dependencies.
+
+Upgrade `pip` and install `careless` with CUDA support:
+
+```bash
 pip install --upgrade pip
-pip install tensorflow[and-cuda]
-pip install careless
+pip install 'careless[cuda]'
 ```
 
-after doing this, you may have to delete stuff in your `~/.bashrc` from previous `conda init` calls, as well as local directories. 
-We can also check the `careless` installation by opening up a gpu node and checking the output as in the 
-[previous instructions](https://github.com/Hekstra-Lab/room-of-requirement/blob/master/crystallography/run_careless_rocky8.md).
+## Add Hekstra Lab packages to `xtalenv1`
 
+Local repositories used for editable installations should be stored in persistent Tier 1 lab storage. Navigate to your directory in the Hekstra Lab Tier 1 storage and create a `packages` directory:
 
-Next, let's make a folder for Hekstra lab packages, and add them to a separate `conda` environment for Laue data processing. 
-This code block includes `cog`,`regroup`,`marccd`,`rs-booster`, and `reciprocalspaceship`. I like to install `rs-booster` and `cog` as editable. 
-
-```
+```bash
+cd /n/lab_storage/hekstra_lab/people/<your directory>
 mkdir packages
 cd packages
-conda create -n laue
-conda activate laue
-conda install -c conda-forge pip
+```
 
+Clone `cog` and install it as an editable package:
+
+```bash
 git clone https://github.com/Hekstra-Lab/cog.git
 cd cog
 pip install -e .
 cd ..
-conda install -c conda-forge cctbx
+```
+
+Install `regroup` and `marccd` into `xtalenv1`:
+
+```bash
 pip install git+https://github.com/Hekstra-Lab/regroup.git
 pip install git+https://github.com/Hekstra-Lab/marccd.git
-pip install git+https://github.com/Hekstra-Lab/marccd.git
+```
 
+Clone `rs-booster` and install it as an editable package:
+
+```bash
 git clone https://github.com/rs-station/rs-booster.git
 cd rs-booster
 python -m pip install -e .
 cd ..
 ```
+
+## Check the installation
+
+Check that the installed Python packages have compatible dependencies:
+
+```bash
+pip check
+```
+
+A correctly resolved installation should report:
+
+```text
+No broken requirements found.
+```
+
+## Future sessions
+
+Because `module load python` is in your `~/.bashrc`, Mamba will be available automatically in future sessions. You only need to activate the existing environment:
+
+```bash
+mamba activate xtalenv1
+```
+
